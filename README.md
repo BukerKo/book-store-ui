@@ -49,18 +49,15 @@ Thanks to `@babel/preset-typescript`, we can handle `/\.tsx?$/` files same as `/
 
 ```bash
 # install dependencies
-$ yarn
+$ npm install
 
 # start a server (development mode)
 # it automatically opens `http://localhost:8080` in your default browser, and you'll see "Babel + TypeScript + React = ❤️"
-$ yarn dev
-
-# check your types
-$ yarn check-types
+$ npm run dev
 
 # production build
-$ yarn build
+$ npm run build
 
 # start a server (production mode)
-$ yarn start
+$ npm start
 ```
