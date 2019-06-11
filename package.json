@@ -3,8 +3,6 @@
   "name": "babel-typescript-react-boilerplate",
   "version": "1.0.0",
   "repository": "git@github.com:saltyshiomix/babel-typescript-react-boilerplate.git",
-  "author": "Yoshihide Shiono <shiono.yoshihide@gmail.com>",
-  "license": "MIT",
   "scripts": {
     "check-types": "tsc",
     "dev": "cross-env NODE_ENV=development webpack-dev-server --color --progress",
@@ -13,7 +11,8 @@
   },
   "dependencies": {
     "react": "^16.8.6",
-    "react-dom": "^16.8.6"
+    "react-dom": "^16.8.6",
+    "react-router-dom": "^5.0.1"
   },
   "devDependencies": {
     "@babel/core": "^7.4.5",
@@ -22,11 +21,18 @@
     "@babel/preset-typescript": "^7.3.3",
     "@types/node": "^12.0.7",
     "@types/react": "^16.8.19",
+    "@types/react-bootstrap": "^0.32.17",
     "@types/react-dom": "^16.8.4",
+    "@types/react-router-dom": "^4.3.3",
     "babel-loader": "^8.0.6",
+    "babel-plugin-react-transform": "^2.0.0",
+    "babel-plugin-transform-class-properties": "^6.5.2",
     "cross-env": "^5.2.0",
+    "css-loader": "^2.1.1",
     "html-webpack-plugin": "^3.2.0",
+    "react-bootstrap": "^1.0.0-beta.9",
     "serve": "^11.0.1",
+    "style-loader": "^0.23.1",
     "terser-webpack-plugin": "^1.3.0",
     "typescript": "^3.5.1",
     "webpack": "^4.33.0",

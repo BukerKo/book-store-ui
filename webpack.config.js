@@ -23,11 +23,19 @@ const config = {
         use: 'babel-loader',
         exclude: /node_modules/,
       },
+      {
+        test: /\.css$/,
+        use: [
+          'style-loader',
+          'css-loader'
+        ]
+      }
     ],
+
   },
   plugins: [
     new HtmlWebpackPlugin({
-      title: 'Babel + TypeScript + React = ❤️',
+      title: 'Bookstore',
       template: 'src/index.html',
     }),
   ],
