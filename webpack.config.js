@@ -6,12 +6,14 @@ const isProd = process.env.NODE_ENV === 'production';
 
 const config = {
   mode: isProd ? 'production' : 'development',
+  devtool: 'inline-source-map',
   entry: {
     index: './src/index.tsx',
   },
   output: {
     path: resolve(__dirname, 'dist'),
     filename: '[name].js',
+    publicPath: "/",
   },
   resolve: {
     extensions: ['.js', '.jsx', '.ts', '.tsx'],
@@ -31,7 +33,9 @@ const config = {
         ]
       }
     ],
-
+  },
+  devServer: {
+    historyApiFallback: true,
   },
   plugins: [
     new HtmlWebpackPlugin({

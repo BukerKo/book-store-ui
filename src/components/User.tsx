@@ -1,6 +1,14 @@
 import * as React from "react";
 
-export default class User extends React.Component{
+interface IProps {
+    isAuthenticated: Boolean,
+    currentUser: String,
+}
+
+interface IState {
+}
+
+export default class User extends React.Component<IProps, IState>{
 
     render() {
         return (

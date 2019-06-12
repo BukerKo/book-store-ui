@@ -2,10 +2,10 @@ import * as React from "react";
 import {Component} from "react";
 import {Button, Form} from "react-bootstrap";
 import '../styles/Login.css'
+import {Link} from "react-router-dom";
 
 interface IProps {
-    handleSubmit: Function,
-    handleRegister: (event: React.MouseEvent) => void
+    handleLogin: Function,
 }
 
 interface IState {
@@ -24,21 +24,16 @@ export default class Login extends Component<IProps, IState> {
 
     handleChange = (event: any) => {
         let target = event.currentTarget;
-        if (target.type === 'email') {
-            this.setState((current) => ({...current, email: target.value}))
-        } else {
-            this.setState((current) => ({...current, password: target.value}))
-        }
+        this.setState((current) => ({...current, [target.type]: target.value}))
     };
 
     handleSubmit = (event: React.FormEvent) => {
-        if (this.state.email && this.state.password) {
+        const {email, password} = this.state;
 
-        }
         event.preventDefault();
         event.stopPropagation();
         this.setState({validated: true},
-            () => this.props.handleSubmit({email: this.state.email, password: this.state.password})
+            () => this.props.handleLogin({email: email, password: password})
         );
     };
 
@@ -64,9 +59,11 @@ export default class Login extends Component<IProps, IState> {
                         Login
                     </Button>
 
-                    <Button id={'register'} variant="secondary" type="button" onClick={this.props.handleRegister}>
-                        Register
-                    </Button>
+                    <Link to={"/signup"}>
+                        <Button id={'register'} variant="secondary" type="button" >
+                            Sign up
+                        </Button>
+                    </Link>
                 </Form>
             </div>
         );

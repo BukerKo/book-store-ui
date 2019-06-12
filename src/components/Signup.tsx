@@ -3,7 +3,7 @@ import {Button, Form} from "react-bootstrap";
 import "../styles/Register.css"
 import {Redirect} from "react-router";
 
-export default class Register extends React.Component {
+export default class Signup extends React.Component {
 
     state = {
         validated: false,
@@ -34,7 +34,7 @@ export default class Register extends React.Component {
         const {validated} = this.state;
         return (
             <div className="Register">
-                <h1>Register</h1>
+                <h1>Sign up</h1>
                 <Form
                     noValidate
                     validated={validated}
@@ -72,9 +72,8 @@ export default class Register extends React.Component {
                             <option>Female</option>
                         </Form.Control>
                     </Form.Group>
-
                     <Button variant="primary" type="submit">
-                        Register
+                        Sign up
                     </Button>
                 </Form>
             </div>

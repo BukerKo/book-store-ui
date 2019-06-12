@@ -8,6 +8,26 @@
             <set />
           </value>
         </entry>
+        <entry key="/a.dummy">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="/a.sql">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$APPLICATION_CONFIG_DIR$/consoles/.datagrid/cell">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$APPLICATION_CONFIG_DIR$/consoles/db/3f11e768-704c-4651-a783-bfde84e914e9/console.sql">
+          <value>
+            <set />
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/node_modules/react-bootstrap/Button.d.ts">
           <value>
             <set />
@@ -68,12 +88,32 @@
             <set />
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/src/components/AppHeader.ts">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/src/components/AppHeader.tsx">
+          <value>
+            <set />
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/src/components/Login.tsx">
           <value>
             <set />
           </value>
         </entry>
         <entry key="$PROJECT_DIR$/src/components/Register.tsx">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/src/components/Signup.tsx">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/src/components/User.tsx">
           <value>
             <set />
           </value>
@@ -89,6 +129,221 @@
           </value>
         </entry>
         <entry key="$PROJECT_DIR$/webpack.config.js">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/../../book-store/pom.xml">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/../../book-store/src/main/java/com/bukrieiev/bookstore/BookStoreApplication.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/../../book-store/src/main/java/com/bukrieiev/bookstore/config/SecurityConfig.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/../../book-store/src/main/java/com/bukrieiev/bookstore/config/WebMvcConfig.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/../../book-store/src/main/java/com/bukrieiev/bookstore/controller/AuthController.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/../../book-store/src/main/java/com/bukrieiev/bookstore/controller/AuthenticationController.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/../../book-store/src/main/java/com/bukrieiev/bookstore/controller/api/AuthenticationController.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/../../book-store/src/main/java/com/bukrieiev/bookstore/controller/impl/AuthenticationControllerImpl.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/../../book-store/src/main/java/com/bukrieiev/bookstore/dao/BookRepository.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/../../book-store/src/main/java/com/bukrieiev/bookstore/dao/RoleRepository.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/../../book-store/src/main/java/com/bukrieiev/bookstore/dao/UserInformationRepository.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/../../book-store/src/main/java/com/bukrieiev/bookstore/dao/UserRepository.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/../../book-store/src/main/java/com/bukrieiev/bookstore/data.sql">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/../../book-store/src/main/java/com/bukrieiev/bookstore/entity/Book.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/../../book-store/src/main/java/com/bukrieiev/bookstore/entity/Gender.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/../../book-store/src/main/java/com/bukrieiev/bookstore/entity/Role.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/../../book-store/src/main/java/com/bukrieiev/bookstore/entity/RoleName.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/../../book-store/src/main/java/com/bukrieiev/bookstore/entity/User.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/../../book-store/src/main/java/com/bukrieiev/bookstore/entity/UserInformation.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/../../book-store/src/main/java/com/bukrieiev/bookstore/exception/AppException.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/../../book-store/src/main/java/com/bukrieiev/bookstore/exception/BadRequestException.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/../../book-store/src/main/java/com/bukrieiev/bookstore/exception/ResourceNotFoundException.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/../../book-store/src/main/java/com/bukrieiev/bookstore/import.sql">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/../../book-store/src/main/java/com/bukrieiev/bookstore/payload/ApiResponse.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/../../book-store/src/main/java/com/bukrieiev/bookstore/payload/JwtAuthenticationPayload.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/../../book-store/src/main/java/com/bukrieiev/bookstore/payload/JwtAuthenticationResponse.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/../../book-store/src/main/java/com/bukrieiev/bookstore/payload/LoginRequest.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/../../book-store/src/main/java/com/bukrieiev/bookstore/payload/SignUpRequest.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/../../book-store/src/main/java/com/bukrieiev/bookstore/security/CurrentUser.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/../../book-store/src/main/java/com/bukrieiev/bookstore/security/CustomUserDetailsService.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/../../book-store/src/main/java/com/bukrieiev/bookstore/security/JwtAuthenticationEntryPoint.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/../../book-store/src/main/java/com/bukrieiev/bookstore/security/JwtAuthenticationFilter.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/../../book-store/src/main/java/com/bukrieiev/bookstore/security/JwtTokenProvider.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/../../book-store/src/main/java/com/bukrieiev/bookstore/security/UserPrincipal.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/../../book-store/src/main/java/com/bukrieiev/bookstore/service/UserService.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/../../book-store/src/main/java/com/bukrieiev/bookstore/service/api/AuthenticationController.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/../../book-store/src/main/java/com/bukrieiev/bookstore/service/api/AuthenticationService.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/../../book-store/src/main/java/com/bukrieiev/bookstore/service/impl/AuthenticationControllerImpl.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/../../book-store/src/main/resources/application.properties">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/../../book-store/src/main/resources/data.sql">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/../../ex/spring-security-react-ant-design-polls-app/polling-app-client/src/app/App.js">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/../../ex/spring-security-react-ant-design-polls-app/polling-app-client/src/registerServiceWorker.js">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/../../ex/spring-security-react-ant-design-polls-app/polling-app-server/src/main/resources/application.properties">
           <value>
             <set />
           </value>
