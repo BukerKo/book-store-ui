@@ -3,13 +3,16 @@ import {Component} from "react";
 import {Button, Form} from "react-bootstrap";
 import '../styles/Login.css'
 import {Link} from "react-router-dom";
+import {login} from "../util/APIUtils";
+import {ACCESS_TOKEN} from "../constants";
+import {Simulate} from "react-dom/test-utils";
 
 interface IProps {
     handleLogin: Function,
 }
 
 interface IState {
-    email?: String,
+    usernameOrEmail?: String,
     password?: String,
     validated: Boolean
 }
@@ -17,24 +20,30 @@ interface IState {
 export default class Login extends Component<IProps, IState> {
 
     state = {
-        email: "",
+        usernameOrEmail: "",
         password: "",
         validated: false
     };
 
     handleChange = (event: any) => {
         let target = event.currentTarget;
-        this.setState((current) => ({...current, [target.type]: target.value}))
+        this.setState((current) => ({...current, [target.id]: target.value}))
     };
 
     handleSubmit = (event: React.FormEvent) => {
-        const {email, password} = this.state;
+        const {usernameOrEmail, password} = this.state;
 
-        event.preventDefault();
-        event.stopPropagation();
-        this.setState({validated: true},
-            () => this.props.handleLogin({email: email, password: password})
-        );
+        login({usernameOrEmail: usernameOrEmail, password: password})
+            .then(response => {
+                localStorage.setItem(ACCESS_TOKEN, response.accessToken);
+                this.props.handleLogin();
+            }).catch(error => {
+            if (error.status === 401) {
+                alert('Your Username or Password is incorrect. Please try again!');
+            } else {
+                alert(error.message || 'Sorry! Something went wrong. Please try again!')
+            }
+        });
     };
 
     render() {
@@ -43,15 +52,12 @@ export default class Login extends Component<IProps, IState> {
             <div className="Login">
                 <h1>Login</h1>
                 <Form validated={validated} onSubmit={this.handleSubmit}>
-                    <Form.Group controlId="formBasicEmail">
-                        <Form.Label>Email address</Form.Label>
-                        <Form.Control type="email" placeholder="Enter email" onChange={this.handleChange}/>
-                        <Form.Text className="text-muted">
-                            We'll never share your email with anyone else.
-                        </Form.Text>
+                    <Form.Group controlId="usernameOrEmail">
+                        <Form.Label>Enter email address or username</Form.Label>
+                        <Form.Control type="usernameOrEmail" placeholder="Username/Email" onChange={this.handleChange}/>
                     </Form.Group>
 
-                    <Form.Group controlId="formBasicPassword">
+                    <Form.Group controlId="password">
                         <Form.Label>Password</Form.Label>
                         <Form.Control type="password" placeholder="Password" onChange={this.handleChange}/>
                     </Form.Group>
@@ -60,7 +66,7 @@ export default class Login extends Component<IProps, IState> {
                     </Button>
 
                     <Link to={"/signup"}>
-                        <Button id={'register'} variant="secondary" type="button" >
+                        <Button id={'register'} variant="secondary" type="button">
                             Sign up
                         </Button>
                     </Link>

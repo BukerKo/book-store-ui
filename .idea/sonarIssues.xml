@@ -88,6 +88,16 @@
             <set />
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/src/components/Admin.ts">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/src/components/Admin.tsx">
+          <value>
+            <set />
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/src/components/AppHeader.ts">
           <value>
             <set />
@@ -118,12 +128,32 @@
             <set />
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/src/constants/index.js">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/src/constants/index.ts">
+          <value>
+            <set />
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/src/index.html">
           <value>
             <set />
           </value>
         </entry>
         <entry key="$PROJECT_DIR$/src/index.tsx">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/src/styles/User.css">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/src/util/APIUtils.ts">
           <value>
             <set />
           </value>
@@ -159,6 +189,11 @@
           </value>
         </entry>
         <entry key="$PROJECT_DIR$/../../book-store/src/main/java/com/bukrieiev/bookstore/controller/AuthenticationController.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/../../book-store/src/main/java/com/bukrieiev/bookstore/controller/UserController.java">
           <value>
             <set />
           </value>
@@ -273,6 +308,11 @@
             <set />
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/../../book-store/src/main/java/com/bukrieiev/bookstore/payload/UserSummary.java">
+          <value>
+            <set />
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/../../book-store/src/main/java/com/bukrieiev/bookstore/security/CurrentUser.java">
           <value>
             <set />
@@ -323,6 +363,11 @@
             <set />
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/../../book-store/src/main/java/com/bukrieiev/bookstore/util/ApiUtil.java">
+          <value>
+            <set />
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/../../book-store/src/main/resources/application.properties">
           <value>
             <set />
@@ -339,6 +384,11 @@
           </value>
         </entry>
         <entry key="$PROJECT_DIR$/../../ex/spring-security-react-ant-design-polls-app/polling-app-client/src/registerServiceWorker.js">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/../../ex/spring-security-react-ant-design-polls-app/polling-app-server/src/main/java/com/example/polls/controller/UserController.java">
           <value>
             <set />
           </value>

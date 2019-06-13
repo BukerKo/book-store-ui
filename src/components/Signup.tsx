@@ -2,27 +2,62 @@ import * as React from "react";
 import {Button, Form} from "react-bootstrap";
 import "../styles/Register.css"
 import {Redirect} from "react-router";
+import {signup} from "../util/APIUtils";
 
-export default class Signup extends React.Component {
+import {withRouter} from 'react-router-dom';
+
+interface IProps {
+    history: any,
+    location: any,
+    match: any
+}
+
+interface IState {
+    username: String,
+    password: String,
+    repeatPassword: String,
+    birthday: String,
+    email: String,
+    gender: String,
+    validated: Boolean,
+    toUser: Boolean
+}
+
+
+class Signup extends React.Component<IProps, IState> {
 
     state = {
+        username: '',
+        password: '',
+        repeatPassword: '',
+        birthday: '',
+        email: '',
+        gender: 'Male',
         validated: false,
         toUser: false
     };
 
     handleSubmit = (event: any) => {
-        console.log(event);
-        const form = event.currentTarget;
-        if (!form.checkValidity()) {
-            event.preventDefault();
-            event.stopPropagation();
-        }
-        this.setState({validated: true, toUser: true});
-        console.log(this.state);
+        event.preventDefault();
+        const signupRequest = {
+            username: this.state.username,
+            password: this.state.password,
+            birthday: this.state.birthday,
+            email: this.state.email,
+            gender: this.state.gender
+        };
+
+        signup(signupRequest)
+            .then(response => {
+                this.props.history.push('/user');
+            }).catch(error => {
+            alert(error.message || 'Sorry! Something went wrong. Please try again!');
+        });
     };
 
     handleChange = (event: any) => {
-
+        const target = event.target;
+        this.setState((current) => ({...current, [target.id]: target.value}))
     };
 
 
@@ -30,7 +65,6 @@ export default class Signup extends React.Component {
         if (this.state.toUser) {
             return <Redirect to={"/user"} push/>
         }
-
         const {validated} = this.state;
         return (
             <div className="Register">
@@ -40,34 +74,34 @@ export default class Signup extends React.Component {
                     validated={validated}
                     onSubmit={this.handleSubmit}
                 >
-                    <Form.Group controlId="formBasicUsername">
+                    <Form.Group controlId="username">
                         <Form.Label>Username</Form.Label>
                         <Form.Control type="username" placeholder="Username" onChange={this.handleChange}/>
                     </Form.Group>
 
-                    <Form.Group controlId="formBasicPassword">
+                    <Form.Group controlId="password">
                         <Form.Label>Password</Form.Label>
                         <Form.Control type="password" placeholder="Password" onChange={this.handleChange}/>
                     </Form.Group>
 
-                    <Form.Group controlId="formConfirmPassword">
+                    <Form.Group controlId="repeatPassword">
                         <Form.Label>Confirm password</Form.Label>
                         <Form.Control type="password" placeholder="Password" onChange={this.handleChange}/>
                     </Form.Group>
 
-                    <Form.Group controlId="formBirthDate">
+                    <Form.Group controlId="birthday">
                         <Form.Label>Birthday</Form.Label>
                         <Form.Control type="birth" placeholder="Birthday" onChange={this.handleChange}/>
                     </Form.Group>
 
-                    <Form.Group controlId="formEmail">
+                    <Form.Group controlId="email">
                         <Form.Label>Email</Form.Label>
                         <Form.Control type="email" placeholder="Email" onChange={this.handleChange}/>
                     </Form.Group>
 
-                    <Form.Group controlId="exampleForm.ControlSelect1">
+                    <Form.Group >
                         <Form.Label>Gender</Form.Label>
-                        <Form.Control as="select">
+                        <Form.Control as="select" id="gender" onChange={this.handleChange}>
                             <option>Male</option>
                             <option>Female</option>
                         </Form.Control>
@@ -80,3 +114,5 @@ export default class Signup extends React.Component {
         );
     }
 }
+
+export default withRouter(Signup);

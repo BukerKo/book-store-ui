@@ -4,31 +4,73 @@ import {Route, Switch} from "react-router";
 import User from "./components/User";
 import Login from "./components/Login";
 import Signup from "./components/Signup";
+import {getCurrentUser} from "./util/APIUtils";
+
+import {withRouter} from 'react-router-dom';
+import Admin from "./components/Admin";
+import {ACCESS_TOKEN} from "./constants";
 
 
-export default class App extends Component {
+interface IProps {
+  history: any,
+  location: any,
+  match: any
+}
+
+interface IState {
+  isAuthenticated: Boolean,
+  currentUser: any,
+}
+
+class App extends Component<IProps, IState> {
 
   state = {
     isAuthenticated: false,
-    currentUser: '',
+    currentUser: {
+      accessToken: '',
+      role: '',
+      username: ''
+    },
   };
 
-  handleSubmit = (credentials: Object) => {
-    this.setState({toUser: true});
-  };
 
   handleLogout = () => {
+    localStorage.removeItem(ACCESS_TOKEN);
 
+    this.setState({
+      currentUser: null,
+      isAuthenticated: false
+    });
+
+    this.props.history.push("/");
   };
 
-  handleLogin = (credentials:Object) => {
-    console.log(credentials);
+  loadCurrentUser = () => {
+    return getCurrentUser()
+        .then(response => {
+          this.setState({
+            currentUser: response,
+            isAuthenticated: true,
+          });
+        })
+  };
+
+  handleLogin = () => {
+    this.setState({
+      currentUser: null,
+      isAuthenticated: false
+    });
+    this.loadCurrentUser()
+        .then(() => {
+      if (this.state.currentUser.role.includes('ROLE_ADMIN')) {
+        this.props.history.push('/admin');
+      } else {
+        this.props.history.push('/user');
+      }
+    });
   };
 
   render() {
-    // if (this.state.toUser) {
-    //   return <Redirect to={"/user"} push/>
-    // }
 
     return (
         <div className={"app-container"}>
@@ -44,9 +86,14 @@ export default class App extends Component {
             <Route path="/" exact
                    render={(props) => <Login handleLogin={this.handleLogin} {...props}/>}/>
             <Route path="/signup" exact component={Signup}/>
+            <Route path="/admin" render={(props) => <Admin isAuthenticated={this.state.isAuthenticated}
+                                                          currentUser={this.state.currentUser}
+                                                          {...props}/>}/>
           </Switch>
         </div>
     );
   }
 
 }
+
+export default withRouter(App);
