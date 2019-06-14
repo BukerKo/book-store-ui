@@ -34,9 +34,6 @@ const config = {
       }
     ],
   },
-  devServer: {
-    historyApiFallback: true,
-  },
   plugins: [
     new HtmlWebpackPlugin({
       title: 'Bookstore',
@@ -59,6 +56,7 @@ if (isProd) {
     compress: true, // https://webpack.js.org/configuration/dev-server/#devservercompress
     stats: 'errors-only', // https://webpack.js.org/configuration/dev-server/#devserverstats-
     overlay: true, // https://webpack.js.org/configuration/dev-server/#devserveroverlay
+    historyApiFallback: true,
   };
 }
 

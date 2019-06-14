@@ -1,23 +1,63 @@
 import * as React from "react";
-import {Redirect} from "react-router";
-import Row from "react-bootstrap/Row";
-import {Col, Container, ListGroup, Navbar} from "react-bootstrap";
 import '../styles/User.css'
+import LeftMenu from "./LeftMenu";
+import Deck from "./Deck";
+import {getBooks} from "../util/APIUtils";
+import {CARDS_ON_PAGE_SIZE} from "../constants";
+import {Route, withRouter} from "react-router";
+import Profile from "./Profile";
+import Orders from "./Orders";
 
 
 interface IProps {
     isAuthenticated: Boolean,
     currentUser: any,
+    history: any,
+    location: any,
+    match: any
 }
 
 interface IState {
+    page: number,
+    size: number,
+    books: Array<any>
 }
 
-export default class User extends React.Component<IProps, IState>{
-
-    handleClick = () => {
-      console.log('nice');
+class User extends React.Component<IProps, IState> {
+    state = {
+        page: 0,
+        size: CARDS_ON_PAGE_SIZE,
+        books: []
     };
+
+    componentDidMount(): void {
+        getBooks({
+            page: this.state.page,
+            size: this.state.size
+        }).then((response) => {
+            this.setState({
+                books: response["_embedded"].books
+            });
+        });
+    }
+
+    handleChangePage = (page: number) => {
+
+        this.setState({page: page});
+    };
+
+    handleClick = (ev:MouseEvent) => {
+        this.props.history.push("/user/profile");
+    };
+
+    getItems = () => {
+        return ['Profile', 'Orders'];
+    };
+
+    getCards = () => {
+        return this.state.books;
+    };
+
 
     render() {
         // if (!this.props.isAuthenticated) {
@@ -28,26 +68,15 @@ export default class User extends React.Component<IProps, IState>{
         // }
         return (
             <div id={"user"}>
-                <Container>
-                    <Row>
-                        <Col>
-                            <Navbar className="navbar-fixed-left flex-column">
-                                <ListGroup variant='flush' className="border">
-                                    <ListGroup.Item action onClick={this.handleClick}>
-                                        This one is a button
-                                    </ListGroup.Item>
-                                    <ListGroup.Item action onClick={this.handleClick}>
-                                        This one is a button
-                                    </ListGroup.Item>
-                                </ListGroup>
-                            </Navbar>
-                        </Col>
-                        <Col md={8}>
-                            <h1>AAAAA</h1>
-                        </Col>
-                    </Row>
-                </Container>
+                <LeftMenu handleClick={this.handleClick} listItems={this.getItems()}/>
+
+                <Route exact path={this.props.match.path} render={() => <Deck cards={this.getCards()}/>} />
+                <Route exact path={`${this.props.match.path}/orders`} component={Orders} />
+                <Route exact path={`${this.props.match.path}/profile`} component={Profile} />
             </div>
         );
     }
 }
+
+export default withRouter(User);
+

@@ -62,33 +62,35 @@ class App extends Component<IProps, IState> {
     });
     this.loadCurrentUser()
         .then(() => {
-      if (this.state.currentUser.role.includes('ROLE_ADMIN')) {
-        this.props.history.push('/admin');
-      } else {
-        this.props.history.push('/user');
-      }
-    });
+          if (this.state.currentUser.role.includes('ROLE_ADMIN')) {
+            this.props.history.push('/admin');
+          } else {
+            this.props.history.push('/user');
+          }
+        });
   };
 
   render() {
 
     return (
         <div className={"app-container"}>
+          {this.state.isAuthenticated &&
           <AppHeader isAuthenticated={this.state.isAuthenticated}
                      currentUser={this.state.currentUser}
-                     handleLogout={this.handleLogout}/>
+                     handleLogout={this.handleLogout}/>}
           <Switch>
-            <Route exact path={"/user"}
-                   render={(props) => <User isAuthenticated={this.state.isAuthenticated}
-                                            currentUser={this.state.currentUser}
-                                            {...props}/>}/>
+
+            <Route path={"/user"}
+                   component={(props: any) => <User isAuthenticated={this.state.isAuthenticated}
+                                                    currentUser={this.state.currentUser}
+                                                    {...props}/>}/>
 
             <Route path="/" exact
                    render={(props) => <Login handleLogin={this.handleLogin} {...props}/>}/>
             <Route path="/signup" exact component={Signup}/>
             <Route path="/admin" render={(props) => <Admin isAuthenticated={this.state.isAuthenticated}
-                                                          currentUser={this.state.currentUser}
-                                                          {...props}/>}/>
+                                                           currentUser={this.state.currentUser}
+                                                           {...props}/>}/>
           </Switch>
         </div>
     );

@@ -5,7 +5,7 @@
   "repository": "git@github.com:saltyshiomix/babel-typescript-react-boilerplate.git",
   "scripts": {
     "check-types": "tsc",
-    "dev": "cross-env NODE_ENV=development webpack-dev-server --color --progress",
+    "dev": "cross-env NODE_ENV=development webpack-dev-server --color --progress --config webpack.config.js ",
     "build": "cross-env NODE_ENV=production webpack --color --progress",
     "start": "serve dist"
   },

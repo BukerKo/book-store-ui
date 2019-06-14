@@ -1,4 +1,5 @@
-export const API_BASE_URL = 'http://localhost:8090/api';
+export const BASE_URL = 'http://localhost:8090';
+export const AUTH_BASE_URL = BASE_URL + '/api/auth';
 export const ACCESS_TOKEN = 'accessToken';
 export const ROLE = 'authorities';
-export const POLL_LIST_SIZE = 30;
+export const CARDS_ON_PAGE_SIZE = 6;

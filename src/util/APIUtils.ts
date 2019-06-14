@@ -1,4 +1,4 @@
-import {ACCESS_TOKEN, API_BASE_URL,} from '../constants/index';
+import {ACCESS_TOKEN, AUTH_BASE_URL, BASE_URL,} from '../constants/index';
 
 interface Options {
     url: string,
@@ -7,17 +7,16 @@ interface Options {
 }
 
 const request = (options: Options) => {
-    const headers = new Headers();
+    const headers: any = {};
 
-    headers.append('Content-Type', 'application/json');
+    headers['Content-Type'] = 'application/json';
     if (localStorage.getItem(ACCESS_TOKEN)) {
-        headers.append('Authorization', 'Bearer ' + localStorage.getItem(ACCESS_TOKEN))
+        headers['Authorization'] = 'Bearer ' + localStorage.getItem(ACCESS_TOKEN);
     }
 
     const defaults = {headers: headers};
-    options = Object.assign({}, defaults, options);
 
-    return fetch(options.url, options)
+    return fetch(options.url, {...defaults, ...options})
         .then(response =>
             response.json().then(json => {
                 if (!response.ok) {
@@ -30,7 +29,7 @@ const request = (options: Options) => {
 
 export function login(loginRequest: any) {
     return request({
-        url: API_BASE_URL + "/auth/signin",
+        url: AUTH_BASE_URL + "/signin",
         method: 'POST',
         body: JSON.stringify(loginRequest)
     });
@@ -38,9 +37,16 @@ export function login(loginRequest: any) {
 
 export function signup(signupRequest: any) {
     return request({
-        url: API_BASE_URL + "/auth/signup",
+        url: AUTH_BASE_URL + "/signup",
         method: 'POST',
         body: JSON.stringify(signupRequest)
+    });
+}
+
+export function getBooks(getBooksRequest: any) {
+    return request({
+        url: `${BASE_URL}/books?page=${getBooksRequest.page}&size=${getBooksRequest.size}`,
+        method: 'GET',
     });
 }
 
@@ -50,7 +56,7 @@ export function getCurrentUser() {
     }
 
     return request({
-        url: `${API_BASE_URL}/user/me`,
+        url: `${BASE_URL}/api/user/me`,
         method: 'GET'
     });
 }

@@ -108,7 +108,37 @@
             <set />
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/src/components/CardDeck.tsx">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/src/components/Deck.tsx">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/src/components/LeftMenu.ts">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/src/components/LeftMenu.tsx">
+          <value>
+            <set />
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/src/components/Login.tsx">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/src/components/Orders.tsx">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/src/components/Profile.tsx">
           <value>
             <set />
           </value>
@@ -144,6 +174,11 @@
           </value>
         </entry>
         <entry key="$PROJECT_DIR$/src/index.tsx">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/src/styles/LeftMenu.css">
           <value>
             <set />
           </value>
