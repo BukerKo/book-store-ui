@@ -178,7 +178,22 @@
             <set />
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/src/styles/AppHeader.css">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/src/styles/Deck.css">
+          <value>
+            <set />
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/src/styles/LeftMenu.css">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/src/styles/Profile.css">
           <value>
             <set />
           </value>
@@ -208,6 +223,11 @@
             <set />
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/../../book-store/src/main/java/com/bukrieiev/bookstore/config/RepositoryConfig.java">
+          <value>
+            <set />
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/../../book-store/src/main/java/com/bukrieiev/bookstore/config/SecurityConfig.java">
           <value>
             <set />
@@ -228,6 +248,11 @@
             <set />
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/../../book-store/src/main/java/com/bukrieiev/bookstore/controller/BookingController.java">
+          <value>
+            <set />
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/../../book-store/src/main/java/com/bukrieiev/bookstore/controller/UserController.java">
           <value>
             <set />
@@ -244,6 +269,16 @@
           </value>
         </entry>
         <entry key="$PROJECT_DIR$/../../book-store/src/main/java/com/bukrieiev/bookstore/dao/BookRepository.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/../../book-store/src/main/java/com/bukrieiev/bookstore/dao/BookingRepository.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/../../book-store/src/main/java/com/bukrieiev/bookstore/dao/OrderRepository.java">
           <value>
             <set />
           </value>
@@ -273,7 +308,17 @@
             <set />
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/../../book-store/src/main/java/com/bukrieiev/bookstore/entity/Booking.java">
+          <value>
+            <set />
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/../../book-store/src/main/java/com/bukrieiev/bookstore/entity/Gender.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/../../book-store/src/main/java/com/bukrieiev/bookstore/entity/Order.java">
           <value>
             <set />
           </value>
@@ -319,6 +364,11 @@
           </value>
         </entry>
         <entry key="$PROJECT_DIR$/../../book-store/src/main/java/com/bukrieiev/bookstore/payload/ApiResponse.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/../../book-store/src/main/java/com/bukrieiev/bookstore/payload/BookingRequest.java">
           <value>
             <set />
           </value>
@@ -374,6 +424,11 @@
           </value>
         </entry>
         <entry key="$PROJECT_DIR$/../../book-store/src/main/java/com/bukrieiev/bookstore/security/UserPrincipal.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/../../book-store/src/main/java/com/bukrieiev/bookstore/service/BookingService.java">
           <value>
             <set />
           </value>

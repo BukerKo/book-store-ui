@@ -4,7 +4,7 @@ import {Route, Switch} from "react-router";
 import User from "./components/User";
 import Login from "./components/Login";
 import Signup from "./components/Signup";
-import {getCurrentUser} from "./util/APIUtils";
+import {addOrder, getCurrentUser} from "./util/APIUtils";
 
 import {withRouter} from 'react-router-dom';
 import Admin from "./components/Admin";
@@ -20,9 +20,12 @@ interface IProps {
 interface IState {
   isAuthenticated: Boolean,
   currentUser: any,
+  booksInCart: Array<any>
 }
 
 class App extends Component<IProps, IState> {
+  headerElement: React.RefObject<AppHeader> = React.createRef();
+
 
   state = {
     isAuthenticated: false,
@@ -31,6 +34,7 @@ class App extends Component<IProps, IState> {
       role: '',
       username: ''
     },
+    booksInCart: []
   };
 
 
@@ -70,19 +74,42 @@ class App extends Component<IProps, IState> {
         });
   };
 
+  handleAddToCart = (book: any) => {
+    if (!this.headerElement.current) {
+      return;
+    }
+    this.headerElement.current.addBookToCart(book);
+  };
+
+  handleConfirmOrder = (books: Array<any>) => {
+    const totalPrice = books.reduce((total, current) => total + parseInt(current.price), 0);
+    let request = {
+      totalPrice: totalPrice
+    };
+    addOrder(Object.assign({}, books, request))
+        .then(() => {
+          if (this.headerElement.current) {
+            this.headerElement.current.clearCart()
+          }
+        });
+  };
+
   render() {
 
     return (
         <div className={"app-container"}>
           {this.state.isAuthenticated &&
-          <AppHeader isAuthenticated={this.state.isAuthenticated}
+          <AppHeader ref={this.headerElement}
+                     isAuthenticated={this.state.isAuthenticated}
                      currentUser={this.state.currentUser}
-                     handleLogout={this.handleLogout}/>}
+                     handleLogout={this.handleLogout}
+                     handleConfirmOrder={this.handleConfirmOrder}/>}
           <Switch>
 
             <Route path={"/user"}
                    component={(props: any) => <User isAuthenticated={this.state.isAuthenticated}
                                                     currentUser={this.state.currentUser}
+                                                    handleAddToCart={this.handleAddToCart}
                                                     {...props}/>}/>
 
             <Route path="/" exact

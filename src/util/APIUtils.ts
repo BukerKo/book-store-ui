@@ -54,9 +54,39 @@ export function getCurrentUser() {
     if (!localStorage.getItem(ACCESS_TOKEN)) {
         return Promise.reject("No access token set.");
     }
-
     return request({
         url: `${BASE_URL}/api/user/me`,
         method: 'GET'
     });
+}
+
+export function getVisibleBooksCount() {
+    return request({
+        url: `${BASE_URL}/books/search/countBooksByVisibleTrue`,
+        method: 'GET',
+    });
+}
+
+export function getVisibleBooks(getBooksRequest: any) {
+    return request({
+        url: `${BASE_URL}/books/search/findBooksByVisibleTrue?page=${getBooksRequest.page}&size=${getBooksRequest.size}`,
+        method: 'GET',
+    });
+}
+
+export function updateUser(updateUserRequest: any) {
+    return request({
+        url: `${BASE_URL}/api/user/update`,
+        method: 'POST',
+        body: JSON.stringify(updateUserRequest)
+    });
+}
+
+export function addOrder(addOrderRequest: any) {
+    return request({
+        url: `${BASE_URL}/bookings`,
+        method: 'POST',
+        body: JSON.stringify(addOrderRequest)
+    });
+
 }

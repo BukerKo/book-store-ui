@@ -2,7 +2,7 @@ import * as React from "react";
 import '../styles/User.css'
 import LeftMenu from "./LeftMenu";
 import Deck from "./Deck";
-import {getBooks} from "../util/APIUtils";
+import {getVisibleBooks, getVisibleBooksCount} from "../util/APIUtils";
 import {CARDS_ON_PAGE_SIZE} from "../constants";
 import {Route, withRouter} from "react-router";
 import Profile from "./Profile";
@@ -10,6 +10,7 @@ import Orders from "./Orders";
 
 
 interface IProps {
+    handleAddToCart: Function,
     isAuthenticated: Boolean,
     currentUser: any,
     history: any,
@@ -21,41 +22,58 @@ interface IState {
     page: number,
     size: number,
     books: Array<any>
+    totalBooks: number
 }
 
 class User extends React.Component<IProps, IState> {
     state = {
         page: 0,
         size: CARDS_ON_PAGE_SIZE,
-        books: []
+        books: [],
+        totalBooks: 0
     };
 
     componentDidMount(): void {
-        getBooks({
+        this.getBooks();
+    }
+
+    getBooks = () => {
+        getVisibleBooks({
             page: this.state.page,
             size: this.state.size
         }).then((response) => {
             this.setState({
-                books: response["_embedded"].books
+                books: response["_embedded"].books,
             });
         });
-    }
+        getVisibleBooksCount()
+            .then(response => {
+                this.countPages(response);
+            });
 
-    handleChangePage = (page: number) => {
-
-        this.setState({page: page});
     };
 
-    handleClick = (ev:MouseEvent) => {
+    handleChangePage = (page: number) => {
+        this.setState({page: page}, () => {
+            this.getBooks();
+        });
+    };
+
+    countPages = (visibleBooksCount: number) => {
+        let pageCount = visibleBooksCount / CARDS_ON_PAGE_SIZE;
+        const remainder = visibleBooksCount % CARDS_ON_PAGE_SIZE;
+        if (remainder != 0) {
+            pageCount = Math.floor(pageCount) + 1;
+        }
+        this.setState({totalBooks: pageCount});
+    };
+
+    handleMenuClick = (ev: MouseEvent) => {
         this.props.history.push("/user/profile");
     };
 
-    getItems = () => {
+    getMenuItems = () => {
         return ['Profile', 'Orders'];
-    };
-
-    getCards = () => {
-        return this.state.books;
     };
 
 
@@ -67,12 +85,16 @@ class User extends React.Component<IProps, IState> {
         //     return <Redirect to="/admin"/>
         // }
         return (
-            <div id={"user"}>
-                <LeftMenu handleClick={this.handleClick} listItems={this.getItems()}/>
-
-                <Route exact path={this.props.match.path} render={() => <Deck cards={this.getCards()}/>} />
-                <Route exact path={`${this.props.match.path}/orders`} component={Orders} />
-                <Route exact path={`${this.props.match.path}/profile`} component={Profile} />
+            <div id={"user"} className="d-flex">
+                <LeftMenu handleClick={this.handleMenuClick} listItems={this.getMenuItems()}/>
+                <div id="user-body">
+                    <Route exact path={this.props.match.path} render={() => <Deck books={this.state.books}
+                                                                                  pagesCount={this.state.totalBooks}
+                                                                                  handlePageClick={this.handleChangePage}
+                                                                                  handleAddToCart={this.props.handleAddToCart}/>}/>
+                    <Route exact path={`${this.props.match.path}/orders`} component={Orders}/>
+                    <Route exact path={`${this.props.match.path}/profile`} component={Profile}/>
+                </div>
             </div>
         );
     }
