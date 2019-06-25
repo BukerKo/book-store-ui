@@ -12,14 +12,20 @@ interface IProps {
 }
 
 interface IState {
-    activePage: number
+    activePage: number,
+    books: Array<any>
 }
 
 
 export default class Deck extends React.Component<IProps, IState> {
     state = {
-        activePage: 1
+        activePage: 1,
+        books: new Array()
     };
+
+    componentWillReceiveProps(nextProps: Readonly<IProps>, nextContext: any): void {
+        this.setState({books: nextProps.books});
+    }
 
     handlePageClick = (ev: any) => {
         ev.preventDefault();
@@ -33,14 +39,21 @@ export default class Deck extends React.Component<IProps, IState> {
         ev.preventDefault();
         ev.stopPropagation();
         const idToSearch = ev.currentTarget.value;
-        let book = this.props.books.find((element) => {
-           return element.id == idToSearch;
+        let book = {};
+        this.state.books.forEach((element:any, index:number) => {
+            if(element.id == idToSearch) {
+                book = element;
+                let books = this.state.books;
+                books[index].quantity = books[index].quantity - 1;
+                this.setState({books: books});
+                return;
+            }
         });
         this.props.handleAddToCart(book);
     };
 
     render() {
-        const cards = this.props.books.map((book) =>
+        const cards = this.state.books.map((book) =>
             <div>
                 <Card key={book.id} className="card">
                     <Card.Header as="h5" className="text-center">{book.title}</Card.Header>
@@ -73,11 +86,13 @@ export default class Deck extends React.Component<IProps, IState> {
                 <CardDeck className="w-100 d-flex flex-wrap justify-content-around">
                     {cards}
                 </CardDeck>
-                <Pagination className="justify-content-center">
-                    <Pagination.Prev/>
-                    {items}
-                    <Pagination.Next/>
-                </Pagination>
+                {this.props.pagesCount > 1 &&
+                    <Pagination className="justify-content-center">
+                        <Pagination.Prev/>
+                        {items}
+                        <Pagination.Next/>
+                    </Pagination>
+                }
             </div>
         );
     }

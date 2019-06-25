@@ -8,7 +8,7 @@ import {addOrder, getCurrentUser} from "./util/APIUtils";
 
 import {withRouter} from 'react-router-dom';
 import Admin from "./components/Admin";
-import {ACCESS_TOKEN} from "./constants";
+import {ACCESS_TOKEN, CURRENT_ROLE, CURRENT_USERNAME} from "./constants";
 
 
 interface IProps {
@@ -40,6 +40,8 @@ class App extends Component<IProps, IState> {
 
   handleLogout = () => {
     localStorage.removeItem(ACCESS_TOKEN);
+    localStorage.removeItem(CURRENT_ROLE);
+    localStorage.removeItem(CURRENT_USERNAME);
 
     this.setState({
       currentUser: null,
@@ -52,6 +54,7 @@ class App extends Component<IProps, IState> {
   loadCurrentUser = () => {
     return getCurrentUser()
         .then(response => {
+          localStorage.setItem(CURRENT_USERNAME, response.username);
           this.setState({
             currentUser: response,
             isAuthenticated: true,
@@ -59,11 +62,9 @@ class App extends Component<IProps, IState> {
         })
   };
 
-  handleLogin = () => {
-    this.setState({
-      currentUser: null,
-      isAuthenticated: false
-    });
+  handleLogin = (response: any) => {
+    localStorage.setItem(ACCESS_TOKEN, response.accessToken);
+    localStorage.setItem(CURRENT_ROLE, response.role);
     this.loadCurrentUser()
         .then(() => {
           if (this.state.currentUser.role.includes('ROLE_ADMIN')) {
@@ -81,12 +82,30 @@ class App extends Component<IProps, IState> {
     this.headerElement.current.addBookToCart(book);
   };
 
+  groupBooksById = (books: Array<any>) => {
+    let booksInOrder = books.reduce((p, c) =>{
+      let id = c.id;
+      if (!p.hasOwnProperty(id)) {
+        p[id] = 0;
+      }
+      p[id]++;
+      return p;
+    }, {});
+
+    return  Object.keys(booksInOrder).map(k => {
+      return {id: k, count: booksInOrder[k]}; });
+
+  };
+
   handleConfirmOrder = (books: Array<any>) => {
     const totalPrice = books.reduce((total, current) => total + parseInt(current.price), 0);
+
     let request = {
+      books: this.groupBooksById(books),
       totalPrice: totalPrice
     };
-    addOrder(Object.assign({}, books, request))
+
+    addOrder(request)
         .then(() => {
           if (this.headerElement.current) {
             this.headerElement.current.clearCart()
@@ -98,7 +117,7 @@ class App extends Component<IProps, IState> {
 
     return (
         <div className={"app-container"}>
-          {this.state.isAuthenticated &&
+          {localStorage.getItem(ACCESS_TOKEN) &&
           <AppHeader ref={this.headerElement}
                      isAuthenticated={this.state.isAuthenticated}
                      currentUser={this.state.currentUser}

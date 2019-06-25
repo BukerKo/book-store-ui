@@ -1,7 +1,7 @@
 import * as React from "react";
 import Navbar from "react-bootstrap/Navbar";
 import Button from "react-bootstrap/Button";
-import {USER_ROLE} from "../constants";
+import {CURRENT_ROLE, CURRENT_USERNAME, USER_ROLE} from "../constants";
 import {Dropdown, DropdownButton} from "react-bootstrap";
 import "../styles/AppHeader.css"
 
@@ -23,7 +23,7 @@ export default class AppHeader extends React.Component<IProps, IState> {
 
     clearCart = () => {
         this.setState({booksInCart: []});
-    }
+    };
 
     addBookToCart = (book:any) => {
         this.setState({ booksInCart: [...this.state.booksInCart, book]});
@@ -59,9 +59,9 @@ export default class AppHeader extends React.Component<IProps, IState> {
             <div className={'app-header'}>
                 <Navbar bg="light" expand="lg" className="justify-content-between">
                     <Navbar.Text>
-                        Hello, {this.props.currentUser.username}
+                        Hello, {localStorage.getItem(CURRENT_USERNAME)}
                     </Navbar.Text>
-                    {this.props.currentUser.role === USER_ROLE &&
+                    {localStorage.getItem(CURRENT_ROLE) === USER_ROLE &&
                     <DropdownButton id="dropdown-basic-button" title="Order">
                         {dropDownContent}
                     </DropdownButton>}

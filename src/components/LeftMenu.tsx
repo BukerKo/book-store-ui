@@ -1,6 +1,7 @@
 import * as React from "react";
 import {ListGroup, Navbar} from "react-bootstrap";
 import '../styles/LeftMenu.css'
+import {SyntheticEvent} from "react";
 
 interface IProps {
     listItems: Array<string>,
@@ -13,8 +14,9 @@ interface IState {
 
 export default class LeftMenu extends React.Component<IProps, IState> {
 
-    handleClick = (ev:any) => {
-        this.props.handleClick(ev);
+    handleClick = (ev: SyntheticEvent) => {
+        ev.preventDefault();
+        this.props.handleClick(ev.currentTarget.innerHTML);
     };
 
     render() {

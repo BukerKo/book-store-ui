@@ -88,5 +88,12 @@ export function addOrder(addOrderRequest: any) {
         method: 'POST',
         body: JSON.stringify(addOrderRequest)
     });
+}
+
+export function getOrders() {
+    return request({
+        url: `${BASE_URL}/bookings`,
+        method: 'GET',
+    });
 
 }

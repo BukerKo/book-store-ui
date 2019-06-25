@@ -3,8 +3,8 @@ import '../styles/User.css'
 import LeftMenu from "./LeftMenu";
 import Deck from "./Deck";
 import {getVisibleBooks, getVisibleBooksCount} from "../util/APIUtils";
-import {CARDS_ON_PAGE_SIZE} from "../constants";
-import {Route, withRouter} from "react-router";
+import {ACCESS_TOKEN, CARDS_ON_PAGE_SIZE, CURRENT_ROLE, USER_ROLE} from "../constants";
+import {Redirect, Route, withRouter} from "react-router";
 import Profile from "./Profile";
 import Orders from "./Orders";
 
@@ -42,8 +42,12 @@ class User extends React.Component<IProps, IState> {
             page: this.state.page,
             size: this.state.size
         }).then((response) => {
+            let books = response["_embedded"].books;
+            books.forEach((el:any) => {
+                delete el["_links"];
+            });
             this.setState({
-                books: response["_embedded"].books,
+                books: books
             });
         });
         getVisibleBooksCount()
@@ -68,22 +72,31 @@ class User extends React.Component<IProps, IState> {
         this.setState({totalBooks: pageCount});
     };
 
-    handleMenuClick = (ev: MouseEvent) => {
-        this.props.history.push("/user/profile");
+    handleMenuClick = (option: string) => {
+        switch (option) {
+            case 'Profile':
+                this.props.history.push("/user/profile");
+                break;
+            case 'Books':
+                this.props.history.push("/user");
+                break;
+            case 'Orders':
+                this.props.history.push("/user/orders");
+        }
     };
 
     getMenuItems = () => {
-        return ['Profile', 'Orders'];
+        return ['Profile', 'Books', 'Orders'];
     };
 
 
     render() {
-        // if (!this.props.isAuthenticated) {
-        //     return <Redirect to="/"/>
-        // }
-        // if (this.props.currentUser.role !== 'ROLE_USER') {
-        //     return <Redirect to="/admin"/>
-        // }
+        if (!localStorage.getItem(ACCESS_TOKEN)) {
+            return <Redirect to="/"/>
+        }
+        if (localStorage.getItem(CURRENT_ROLE) !== USER_ROLE) {
+            return <Redirect to="/admin"/>
+        }
         return (
             <div id={"user"} className="d-flex">
                 <LeftMenu handleClick={this.handleMenuClick} listItems={this.getMenuItems()}/>

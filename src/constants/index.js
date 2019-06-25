@@ -4,3 +4,5 @@ export const ACCESS_TOKEN = 'accessToken';
 export const ROLE = 'authorities';
 export const CARDS_ON_PAGE_SIZE = 6;
 export const USER_ROLE = 'ROLE_USER';
+export const CURRENT_ROLE = 'currentRole';
+export const CURRENT_USERNAME = 'currentUser';

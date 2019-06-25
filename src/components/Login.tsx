@@ -4,8 +4,7 @@ import {Button, Form} from "react-bootstrap";
 import '../styles/Login.css'
 import {Link} from "react-router-dom";
 import {login} from "../util/APIUtils";
-import {ACCESS_TOKEN} from "../constants";
-import {Simulate} from "react-dom/test-utils";
+import {ACCESS_TOKEN, CURRENT_ROLE} from "../constants";
 
 interface IProps {
     handleLogin: Function,
@@ -31,12 +30,14 @@ export default class Login extends Component<IProps, IState> {
     };
 
     handleSubmit = (event: React.FormEvent) => {
+        event.stopPropagation();
+        event.preventDefault();
         const {usernameOrEmail, password} = this.state;
 
         login({usernameOrEmail: usernameOrEmail, password: password})
             .then(response => {
-                localStorage.setItem(ACCESS_TOKEN, response.accessToken);
-                this.props.handleLogin();
+                console.log(response);
+                this.props.handleLogin(response);
             }).catch(error => {
             if (error.status === 401) {
                 alert('Your Username or Password is incorrect. Please try again!');
