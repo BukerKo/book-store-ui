@@ -68,7 +68,7 @@ class App extends Component<IProps, IState> {
     this.loadCurrentUser()
         .then(() => {
           if (this.state.currentUser.role.includes('ROLE_ADMIN')) {
-            this.props.history.push('/admin');
+            this.props.history.push('/admin/books');
           } else {
             this.props.history.push('/user');
           }

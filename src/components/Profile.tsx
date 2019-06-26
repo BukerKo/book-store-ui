@@ -54,7 +54,8 @@ class Profile extends React.Component<IProps, IState> {
     render() {
         return (
             <div className="changeProfile w-100">
-                <Form onSubmit={this.handleSubmit}>
+                <Form onSubmit={this.handleSubmit}
+                autoComplete='off'>
                     <Form.Group controlId="password">
                         <Form.Label>Password</Form.Label>
                         <Form.Control type="password" placeholder="Password" onChange={this.handleChange}/>

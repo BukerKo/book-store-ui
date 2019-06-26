@@ -123,6 +123,11 @@
             <set />
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/src/components/FileInput.tsx">
+          <value>
+            <set />
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/src/components/LeftMenu.ts">
           <value>
             <set />
@@ -134,6 +139,21 @@
           </value>
         </entry>
         <entry key="$PROJECT_DIR$/src/components/Login.tsx">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/src/components/ManageBooks.tsx">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/src/components/ManageUsers.tsx">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/src/components/NewBook.tsx">
           <value>
             <set />
           </value>
@@ -198,6 +218,21 @@
             <set />
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/src/styles/ManageBooks.css">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/src/styles/ManageUsers.css">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/src/styles/NewBook.css">
+          <value>
+            <set />
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/src/styles/Orders.css">
           <value>
             <set />
@@ -233,6 +268,11 @@
             <set />
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/../../book-store/src/main/java/com/bukrieiev/bookstore/config/FileStorageProperties.java">
+          <value>
+            <set />
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/../../book-store/src/main/java/com/bukrieiev/bookstore/config/RepositoryConfig.java">
           <value>
             <set />
@@ -259,6 +299,11 @@
           </value>
         </entry>
         <entry key="$PROJECT_DIR$/../../book-store/src/main/java/com/bukrieiev/bookstore/controller/BookingController.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/../../book-store/src/main/java/com/bukrieiev/bookstore/controller/FileController.java">
           <value>
             <set />
           </value>
@@ -319,6 +364,11 @@
           </value>
         </entry>
         <entry key="$PROJECT_DIR$/../../book-store/src/main/java/com/bukrieiev/bookstore/dto/BookTitleToCount.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/../../book-store/src/main/java/com/bukrieiev/bookstore/dto/MainUserInformation.java">
           <value>
             <set />
           </value>
@@ -388,12 +438,27 @@
             <set />
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/../../book-store/src/main/java/com/bukrieiev/bookstore/exception/FileStorageException.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/../../book-store/src/main/java/com/bukrieiev/bookstore/exception/MyFileNotFoundException.java">
+          <value>
+            <set />
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/../../book-store/src/main/java/com/bukrieiev/bookstore/exception/ResourceNotFoundException.java">
           <value>
             <set />
           </value>
         </entry>
         <entry key="$PROJECT_DIR$/../../book-store/src/main/java/com/bukrieiev/bookstore/import.sql">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/../../book-store/src/main/java/com/bukrieiev/bookstore/payload/AllUserResponse.java">
           <value>
             <set />
           </value>
@@ -429,6 +494,11 @@
           </value>
         </entry>
         <entry key="$PROJECT_DIR$/../../book-store/src/main/java/com/bukrieiev/bookstore/payload/SignUpRequest.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/../../book-store/src/main/java/com/bukrieiev/bookstore/payload/UploadFileResponse.java">
           <value>
             <set />
           </value>
@@ -469,6 +539,11 @@
           </value>
         </entry>
         <entry key="$PROJECT_DIR$/../../book-store/src/main/java/com/bukrieiev/bookstore/service/BookingService.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/../../book-store/src/main/java/com/bukrieiev/bookstore/service/FileStorageService.java">
           <value>
             <set />
           </value>

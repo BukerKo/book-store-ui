@@ -56,7 +56,7 @@ export default class AppHeader extends React.Component<IProps, IState> {
         }
 
         return (
-            <div className={'app-header'}>
+            <div className='app-header'>
                 <Navbar bg="light" expand="lg" className="justify-content-between">
                     <Navbar.Text>
                         Hello, {localStorage.getItem(CURRENT_USERNAME)}

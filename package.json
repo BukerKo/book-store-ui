@@ -11,10 +11,14 @@
   },
   "dependencies": {
     "@types/react-bootstrap-table": "^4.3.7",
+    "@types/react-dropzone": "^4.2.2",
+    "@types/react-file-input": "0.0.9",
     "react": "^16.8.6",
     "react-bootstrap-table": "^4.3.1",
     "react-bootstrap-table-next": "^3.1.4",
     "react-dom": "^16.8.6",
+    "react-dropzone": "^10.1.5",
+    "react-file-input": "^0.2.5",
     "react-router-dom": "^5.0.1"
   },
   "devDependencies": {

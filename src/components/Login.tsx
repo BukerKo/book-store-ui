@@ -52,7 +52,7 @@ export default class Login extends Component<IProps, IState> {
         return (
             <div className="Login">
                 <h1>Login</h1>
-                <Form validated={validated} onSubmit={this.handleSubmit}>
+                <Form validated={validated} onSubmit={this.handleSubmit} autoComplete='off'>
                     <Form.Group controlId="usernameOrEmail">
                         <Form.Label>Enter email address or username</Form.Label>
                         <Form.Control type="usernameOrEmail" placeholder="Username/Email" onChange={this.handleChange}/>

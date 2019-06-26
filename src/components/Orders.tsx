@@ -5,33 +5,46 @@ import '../../node_modules/react-bootstrap-table/dist/react-bootstrap-table-all.
 import '../styles/Orders.css'
 
 
-
 export default class Orders extends React.Component {
     state = {
         data: Array(),
+        options: Object()
     };
 
     componentWillMount(): void {
-        this.getData();
+        this.getData({
+            page: 0,
+            size: 10
+        });
+        this.setState({
+            options: {
+                onPageChange: this.onPageChange,
+            }
+        });
     }
 
-    getData = () => {
-        let i = 1;
-        getOrders().then(
-            response => {
+    onPageChange = (page: number, sizePerPage: number) => {
+        this.getData({
+            page: page - 1,
+            size: sizePerPage
+        })
+    };
 
-                this.setState({data: response}, () => {
-                    this.state.data.forEach((item) => {
-                        item.id = i;
-                        i++;
-                        item.bookTitleToCounts = item.bookTitleToCounts.map((value:any) => {
-                            return '' + value.title + " (" + value.count + ")";
-                        });
-                        item.bookTitleToCounts = item.bookTitleToCounts.reduce((prev:any, current:any) => {
-                            return '' + prev + ", " + current;
-                        });
+    getData = (getOrdersRequest: any) => {
+        let i = 1;
+        getOrders(getOrdersRequest).then(
+            response => {
+                response.forEach((item: any) => {
+                    item.id = i;
+                    i++;
+                    item.bookTitleToCounts = item.bookTitleToCounts.map((value: any) => {
+                        return '' + value.title + " (" + value.count + ")";
+                    });
+                    item.bookTitleToCounts = item.bookTitleToCounts.reduce((prev: any, current: any) => {
+                        return '' + prev + ", " + current;
                     });
                 });
+                this.setState({data: response});
             })
     };
 
@@ -42,11 +55,16 @@ export default class Orders extends React.Component {
                 <BootstrapTable
                     ref='table'
                     data={this.state.data}
+                    options={this.state.options}
                     pagination>
-                    <TableHeaderColumn headerAlign='center' dataSort width='50' dataField='id' isKey={true}>ID</TableHeaderColumn>
-                    <TableHeaderColumn headerAlign='center' dataSort dataField='bookTitleToCounts'>Books</TableHeaderColumn>
-                    <TableHeaderColumn headerAlign='center' dataSort width='100' dataField='price'>Price</TableHeaderColumn>
-                    <TableHeaderColumn headerAlign='center' dataSort width='150' dataField='date'>Date</TableHeaderColumn>
+                    <TableHeaderColumn headerAlign='center' dataSort width='50' dataField='id'
+                                       isKey={true}>ID</TableHeaderColumn>
+                    <TableHeaderColumn headerAlign='center' dataSort
+                                       dataField='bookTitleToCounts'>Books</TableHeaderColumn>
+                    <TableHeaderColumn headerAlign='center' dataSort width='100'
+                                       dataField='price'>Price</TableHeaderColumn>
+                    <TableHeaderColumn headerAlign='center' dataSort width='150'
+                                       dataField='date'>Date</TableHeaderColumn>
                 </BootstrapTable>
             </div>
         )

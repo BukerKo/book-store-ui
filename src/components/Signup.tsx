@@ -73,6 +73,7 @@ class Signup extends React.Component<IProps, IState> {
                     noValidate
                     validated={validated}
                     onSubmit={this.handleSubmit}
+                    autoComplete='off'
                 >
                     <Form.Group controlId="username">
                         <Form.Label>Username</Form.Label>
