@@ -42,9 +42,9 @@ export default class ManageBooks extends React.Component {
             title: row['title'],
             quantity: row['quantity'],
             price: row['price'],
-            visible: row['visible'],
+            visible: row['visible'] === 'Yes',
             photo: row['photo']
-        }).then(resp => alert('Thw whole row :\n' + rowStr));
+        }).then();
 
     };
 
@@ -58,6 +58,9 @@ export default class ManageBooks extends React.Component {
     getData = (getBooksRequest: any) => {
         getBooks(getBooksRequest).then(
             response => {
+                response['_embedded'].books.forEach((item: any) => {
+                    item.visible = item.visible ? 'Yes' : 'No';
+                });
                 this.setState({data: response['_embedded'].books});
             })
     };
@@ -66,29 +69,29 @@ export default class ManageBooks extends React.Component {
         return (
             <div className='manage-books-container'>
                 <Link to="/admin/newBook" className='float-right'>
-                    <Button >
+                    <Button>
                         New Book
                     </Button>
                 </Link>
-            <div className='w-75 manage-books'>
-                <BootstrapTable
-                    ref='table'
-                    data={this.state.data}
-                    options={this.state.options}
-                    cellEdit={this.state.cellEditProps}
-                    pagination>
-                    <TableHeaderColumn headerAlign='center' dataSort width='200' dataField='title'
-                                       isKey={true}>Name</TableHeaderColumn>
-                    <TableHeaderColumn headerAlign='center' width='100' dataSort
-                                       dataField='price'>Price</TableHeaderColumn>
-                    <TableHeaderColumn headerAlign='center' dataSort
-                                       dataField='photo'>Photo</TableHeaderColumn>
-                    <TableHeaderColumn headerAlign='center' dataSort width='100'
-                                       dataField='quantity'>Count</TableHeaderColumn>
-                    <TableHeaderColumn headerAlign='center' dataSort width='100'
-                                       dataField='visible'>Visible</TableHeaderColumn>
-                </BootstrapTable>
-            </div>
+                <div className='w-75 manage-books'>
+                    <BootstrapTable
+                        ref='table'
+                        data={this.state.data}
+                        options={this.state.options}
+                        cellEdit={this.state.cellEditProps}
+                        pagination>
+                        <TableHeaderColumn headerAlign='center' dataSort width='200' dataField='title'
+                                           isKey={true}>Name</TableHeaderColumn>
+                        <TableHeaderColumn headerAlign='center' width='100' dataSort
+                                           dataField='price'>Price</TableHeaderColumn>
+                        <TableHeaderColumn headerAlign='center' dataSort
+                                           dataField='photo'>Photo</TableHeaderColumn>
+                        <TableHeaderColumn headerAlign='center' dataSort width='100'
+                                           dataField='quantity'>Count</TableHeaderColumn>
+                        <TableHeaderColumn headerAlign='center' dataSort width='100'
+                                           dataField='visible' editable={{type: 'checkbox',options: {values: 'Yes:No'}}}>Visible</TableHeaderColumn>
+                    </BootstrapTable>
+                </div>
             </div>
         );
     }

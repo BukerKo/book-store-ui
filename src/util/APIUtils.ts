@@ -136,10 +136,11 @@ export function getUsers(getUsersRequest: any) {
     });
 }
 
-export function deleteUser(id: number) {
+export function deleteUsers(deleteUsersRequest: any) {
     return request( {
-        url: `${BASE_URL}/api/user/${id}`,
-        method: 'DELETE',
+        url: `${BASE_URL}/api/user/delete`,
+        method: 'POST',
+        body: JSON.stringify(deleteUsersRequest)
     });
 }
 

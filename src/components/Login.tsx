@@ -4,7 +4,6 @@ import {Button, Form} from "react-bootstrap";
 import '../styles/Login.css'
 import {Link} from "react-router-dom";
 import {login} from "../util/APIUtils";
-import {ACCESS_TOKEN, CURRENT_ROLE} from "../constants";
 
 interface IProps {
     handleLogin: Function,
@@ -13,7 +12,9 @@ interface IProps {
 interface IState {
     usernameOrEmail?: String,
     password?: String,
-    validated: Boolean
+    validated: Boolean,
+    validUsernameOrEmail: Boolean,
+    validPassword: Boolean
 }
 
 export default class Login extends Component<IProps, IState> {
@@ -21,11 +22,34 @@ export default class Login extends Component<IProps, IState> {
     state = {
         usernameOrEmail: "",
         password: "",
-        validated: false
+        validated: false,
+        validUsernameOrEmail: false,
+        validPassword: false
     };
 
     handleChange = (event: any) => {
         let target = event.currentTarget;
+
+        event.stopPropagation();
+            event.preventDefault();
+        this.setState({
+            validated: true,
+            validPassword: true,
+            validUsernameOrEmail: true
+        });
+        // let regex = new RegExp("^[a-zA-Z0-9_.@-]+$");
+        // if (!regex.test(target.value)) {
+        //     event.stopPropagation();
+        //     event.preventDefault();
+        //     if (target.id === 'email') {
+        //         this.setState({validUsernameOrEmail: false})
+        //     } else {
+        //         this.setState({validPassword: false})
+        //     }
+        //     this.setState({validated: false});
+        //     return;
+        // }
+
         this.setState((current) => ({...current, [target.id]: target.value}))
     };
 
@@ -48,19 +72,20 @@ export default class Login extends Component<IProps, IState> {
     };
 
     render() {
-        const {validated} = this.state;
         return (
             <div className="Login">
                 <h1>Login</h1>
-                <Form validated={validated} onSubmit={this.handleSubmit} autoComplete='off'>
+                <Form onSubmit={this.handleSubmit} autoComplete='off'>
                     <Form.Group controlId="usernameOrEmail">
-                        <Form.Label>Enter email address or username</Form.Label>
-                        <Form.Control type="usernameOrEmail" placeholder="Username/Email" onChange={this.handleChange}/>
+                        <Form.Label column={false}>Enter email address or username</Form.Label>
+                        <Form.Control
+                                      type="usernameOrEmail" placeholder="Username/Email" onChange={this.handleChange}/>
                     </Form.Group>
 
                     <Form.Group controlId="password">
-                        <Form.Label>Password</Form.Label>
-                        <Form.Control type="password" placeholder="Password" onChange={this.handleChange}/>
+                        <Form.Label column={false}>Password</Form.Label>
+                        <Form.Control
+                                      type="password" placeholder="Password" onChange={this.handleChange}/>
                     </Form.Group>
                     <Button variant="primary" type="submit">
                         Login

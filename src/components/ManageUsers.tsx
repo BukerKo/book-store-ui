@@ -1,7 +1,8 @@
 import * as React from "react";
 import {BootstrapTable, TableHeaderColumn} from "react-bootstrap-table";
-import {deleteUser, getUsers, updateMainUserInformation} from "../util/APIUtils";
+import {deleteUsers, getUsers, updateMainUserInformation} from "../util/APIUtils";
 import '../styles/ManageUsers.css'
+import {number} from "prop-types";
 
 export default class ManageUsers extends React.Component {
 
@@ -9,7 +10,10 @@ export default class ManageUsers extends React.Component {
         data: Array(),
         options: Object(),
         cellEditProps: Object(),
-        selectRowProp: Object()
+        selectRowProp: Object(),
+        totalCount: number,
+        sizePerPage: number,
+        page: number
     };
 
     componentWillMount(): void {
@@ -18,6 +22,8 @@ export default class ManageUsers extends React.Component {
             size: 10
         });
         this.setState({
+            sizePerPage: 10,
+            page: 0,
             selectRowProp: {
                 mode: 'checkbox'
             },
@@ -44,22 +50,35 @@ export default class ManageUsers extends React.Component {
     };
 
     onAfterDeleteRow = (rowKeys: any) => {
-        rowKeys.forEach((key:number) => {
-            deleteUser(key).then();
-        });
+        deleteUsers(rowKeys).then();
     };
 
     onPageChange = (page: number, sizePerPage: number) => {
+
         this.getData({
             page: page - 1,
             size: sizePerPage
         })
+
     };
 
     getData = (getUsersRequest: any) => {
         getUsers(getUsersRequest).then(
             response => {
-                this.setState({data: response});
+                let data = new Array(response.totalCount);
+                data.fill({});
+                const currentPage = Number(getUsersRequest.page);
+                const sizePerPage = Number(getUsersRequest.size);
+                let start = currentPage*sizePerPage;
+                for (let i = start; i < start+response.mainUserInformationList.length;  i++){
+                    data[i] = response.mainUserInformationList[i-start];
+                }
+                this.setState({
+                    data: data,
+                    totalCount: response.totalCount,
+                    page: getUsersRequest.page - 1,
+                    size: getUsersRequest.size
+                });
             })
     };
 

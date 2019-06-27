@@ -40,14 +40,8 @@ class NewBook extends React.Component<IProps, IState> {
                 visible: this.state.visible === 'on',
                 photo: response.fileDownloadUri
             })
+                .then(this.props.history.push("/admin/books"))
         );
-        addBook({
-            title: this.state.title,
-            quantity: this.state.quantity,
-            price: this.state.price,
-            visible: this.state.visible === 'on',
-            file: this.state.photo
-        }).then();
     };
 
 

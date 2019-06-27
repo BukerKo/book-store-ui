@@ -258,6 +258,16 @@
             <set />
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/../../book-store/.gitignore">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/../../book-store/.mvn/wrapper/maven-wrapper.properties">
+          <value>
+            <set />
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/../../book-store/pom.xml">
           <value>
             <set />
@@ -354,6 +364,11 @@
           </value>
         </entry>
         <entry key="$PROJECT_DIR$/../../book-store/src/main/java/com/bukrieiev/bookstore/data.sql">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/../../book-store/src/main/java/com/bukrieiev/bookstore/dto/BookFromBookingRequest.java">
           <value>
             <set />
           </value>
@@ -463,6 +478,11 @@
             <set />
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/../../book-store/src/main/java/com/bukrieiev/bookstore/payload/AllUsersResponse.java">
+          <value>
+            <set />
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/../../book-store/src/main/java/com/bukrieiev/bookstore/payload/ApiResponse.java">
           <value>
             <set />
@@ -538,6 +558,11 @@
             <set />
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/../../book-store/src/main/java/com/bukrieiev/bookstore/service/BookService.java">
+          <value>
+            <set />
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/../../book-store/src/main/java/com/bukrieiev/bookstore/service/BookingService.java">
           <value>
             <set />
@@ -584,6 +609,11 @@
           </value>
         </entry>
         <entry key="$PROJECT_DIR$/../../book-store/src/main/resources/data.sql">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/../../book-store/src/test/java/com/bukrieiev/bookstore/BookStoreApplicationTests.java">
           <value>
             <set />
           </value>
