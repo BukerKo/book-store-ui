@@ -1,5 +1,4 @@
 import {ACCESS_TOKEN, AUTH_BASE_URL, BASE_URL,} from '../constants/index';
-import {func} from "prop-types";
 
 interface Options {
     url: string,
@@ -18,8 +17,8 @@ const request = (options: Options) => {
 
     const defaults = {headers: headers};
 
-    let body:any = options.body;
-    if(body instanceof FormData) {
+    let body: any = options.body;
+    if (body instanceof FormData) {
         delete defaults.headers['Content-Type'];
     }
 
@@ -137,7 +136,7 @@ export function getUsers(getUsersRequest: any) {
 }
 
 export function deleteUsers(deleteUsersRequest: any) {
-    return request( {
+    return request({
         url: `${BASE_URL}/api/user/delete`,
         method: 'POST',
         body: JSON.stringify(deleteUsersRequest)
@@ -151,5 +150,12 @@ export function uploadImage(image: any) {
         url: `${BASE_URL}/uploadFile`,
         method: 'POST',
         body: form,
+    });
+}
+
+export function getBookingsCount() {
+    return request({
+        url: `${BASE_URL}/bookings/totalCount`,
+        method: 'GET'
     });
 }

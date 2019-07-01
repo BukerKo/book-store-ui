@@ -1,7 +1,7 @@
 import * as React from "react";
 import Navbar from "react-bootstrap/Navbar";
 import Button from "react-bootstrap/Button";
-import {CURRENT_ROLE, CURRENT_USERNAME, USER_ROLE} from "../constants";
+import {BOOKS_IN_CART, CURRENT_ROLE, CURRENT_USERNAME, USER_ROLE} from "../constants";
 import {Dropdown, DropdownButton} from "react-bootstrap";
 import "../styles/AppHeader.css"
 
@@ -13,7 +13,8 @@ interface IProps {
     isAuthenticated: Boolean,
     currentUser: any,
     handleLogout: Function,
-    handleConfirmOrder: Function
+    handleConfirmOrder: Function,
+    handleCancelOrder: Function
 }
 
 export default class AppHeader extends React.Component<IProps, IState> {
@@ -21,12 +22,17 @@ export default class AppHeader extends React.Component<IProps, IState> {
         booksInCart:[]
     };
 
+    componentDidMount(): void {
+        this.loadCartFromLocalStorage();
+    }
+
     clearCart = () => {
-        this.setState({booksInCart: []});
+        localStorage.setItem(BOOKS_IN_CART, "[]");
+        this.loadCartFromLocalStorage();
     };
 
-    addBookToCart = (book:any) => {
-        this.setState({ booksInCart: [...this.state.booksInCart, book]});
+    loadCartFromLocalStorage = () => {
+        this.setState({ booksInCart: JSON.parse(localStorage.getItem(BOOKS_IN_CART) || '[]')});
     };
 
     handleLogout = () => {
@@ -36,6 +42,12 @@ export default class AppHeader extends React.Component<IProps, IState> {
     handleConfirmOrder = () => {
         this.props.handleConfirmOrder(this.state.booksInCart);
         this.setState({booksInCart: []});
+    };
+
+    handleCancelOrder = () => {
+        localStorage.setItem(BOOKS_IN_CART, "[]");
+        this.props.handleCancelOrder();
+        this.loadCartFromLocalStorage();
     };
 
     render() {
@@ -52,6 +64,7 @@ export default class AppHeader extends React.Component<IProps, IState> {
                 {dropdownItems}
                 <Dropdown.Divider/>
                 <Dropdown.Item onClick={this.handleConfirmOrder}>Confirm</Dropdown.Item>
+                <Dropdown.Item onClick={this.handleCancelOrder}>Cancel</Dropdown.Item>
             </div>
         }
 

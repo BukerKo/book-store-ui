@@ -518,6 +518,16 @@
             <set />
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/../../book-store/src/main/java/com/bukrieiev/bookstore/payload/SuccessfulDelete.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/../../book-store/src/main/java/com/bukrieiev/bookstore/payload/SuccessfullDelete.java">
+          <value>
+            <set />
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/../../book-store/src/main/java/com/bukrieiev/bookstore/payload/UploadFileResponse.java">
           <value>
             <set />

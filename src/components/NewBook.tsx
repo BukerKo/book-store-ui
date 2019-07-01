@@ -1,5 +1,5 @@
 import * as React from "react";
-import {Button, Form} from "react-bootstrap";
+import {Button, Form, InputGroup} from "react-bootstrap";
 import {withRouter} from "react-router";
 import '../styles/NewBook.css'
 import {addBook, uploadImage} from "../util/APIUtils";
@@ -17,9 +17,27 @@ interface IState {
     price: Number,
     visible: String,
     photo: any,
+    validated: boolean,
+    validTitle: boolean,
+    validPrice: boolean,
+    validQuantity: boolean,
+    validPhoto: boolean
 }
 
 class NewBook extends React.Component<IProps, IState> {
+
+    state = {
+        title: '',
+        quantity: 1,
+        price: 10,
+        visible: 'off',
+        photo: null,
+        validated: false,
+        validTitle: false,
+        validPrice: false,
+        validQuantity: false,
+        validPhoto: false
+    };
 
     handleFileInput = (image: any) => {
         this.setState({photo: image});
@@ -46,29 +64,36 @@ class NewBook extends React.Component<IProps, IState> {
 
 
     render() {
+        const {validated, validPhoto, validPrice, validQuantity, validTitle} = this.state;
         return (
             <div className="changeProfile w-100">
-                <Form onSubmit={this.handleSubmit} autoComplete='off'>
+                <Form onSubmit={this.handleSubmit}
+                      autoComplete='off'
+                      noValidate
+                      validated={validated}
+                    >
                     <Form.Label className='text-center book-label' column={true}>Book</Form.Label>
 
                     <Form.Group controlId="title">
                         <Form.Label column={false}>Title</Form.Label>
-                        <Form.Control type="text" onChange={this.handleChange}/>
+                        <Form.Control type="text" onChange={this.handleChange}
+                        isValid={validTitle} isInvalid={!validTitle}/>
                     </Form.Group>
 
                     <Form.Group controlId="price">
                         <Form.Label column={false}>Price</Form.Label>
-                        <Form.Control type="text" onChange={this.handleChange}/>
+                        <Form.Control type="text" onChange={this.handleChange}
+                        isValid={validPrice} isInvalid={!validPrice}/>
                     </Form.Group>
 
                     <Form.Group controlId="quantity">
                         <Form.Label column={false}>Count</Form.Label>
-                        <Form.Control type="text" onChange={this.handleChange}/>
+                        <Form.Control type="text" onChange={this.handleChange} value={this.state.quantity.toString(2)}
+                        isValid={validQuantity} isInvalid={!validQuantity}/>
                     </Form.Group>
 
                     <Form.Group controlId="photo">
                         <Form.Label column={false}>Photo</Form.Label>
-                        {/*<Form.Control type="photo" onChange={this.handleChange}/>*/}
                         <FileInput handleFileChoose={this.handleFileInput}/>
                     </Form.Group>
 
@@ -77,7 +102,7 @@ class NewBook extends React.Component<IProps, IState> {
                         <Form.Check type="checkbox" onChange={this.handleChange}/>
                     </Form.Group>
 
-                    <Button variant="primary" type="submit">
+                    <Button variant="primary" type="submit" disabled={!validated}>
                         Save
                     </Button>
                 </Form>

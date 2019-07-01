@@ -8,7 +8,7 @@ import {addOrder, getCurrentUser} from "./util/APIUtils";
 
 import {withRouter} from 'react-router-dom';
 import Admin from "./components/Admin";
-import {ACCESS_TOKEN, CURRENT_ROLE, CURRENT_USERNAME} from "./constants";
+import {ACCESS_TOKEN, BOOKS_IN_CART, CURRENT_ROLE, CURRENT_USERNAME} from "./constants";
 
 
 interface IProps {
@@ -26,7 +26,6 @@ interface IState {
 class App extends Component<IProps, IState> {
   headerElement: React.RefObject<AppHeader> = React.createRef();
 
-
   state = {
     isAuthenticated: false,
     currentUser: {
@@ -39,9 +38,7 @@ class App extends Component<IProps, IState> {
 
 
   handleLogout = () => {
-    localStorage.removeItem(ACCESS_TOKEN);
-    localStorage.removeItem(CURRENT_ROLE);
-    localStorage.removeItem(CURRENT_USERNAME);
+    localStorage.clear();
 
     this.setState({
       currentUser: null,
@@ -79,11 +76,14 @@ class App extends Component<IProps, IState> {
     if (!this.headerElement.current) {
       return;
     }
-    this.headerElement.current.addBookToCart(book);
+    let booksInCart = JSON.parse(localStorage.getItem(BOOKS_IN_CART) || '[]');
+    booksInCart.push(book);
+    localStorage.setItem(BOOKS_IN_CART, JSON.stringify(booksInCart));
+    this.headerElement.current.loadCartFromLocalStorage();
   };
 
   groupBooksById = (books: Array<any>) => {
-    let booksInOrder = books.reduce((p, c) =>{
+    let booksInOrder = books.reduce((p, c) => {
       let id = c.id;
       if (!p.hasOwnProperty(id)) {
         p[id] = 0;
@@ -92,8 +92,9 @@ class App extends Component<IProps, IState> {
       return p;
     }, {});
 
-    return  Object.keys(booksInOrder).map(k => {
-      return {id: k, count: booksInOrder[k]}; });
+    return Object.keys(booksInOrder).map(k => {
+      return {id: k, count: booksInOrder[k]};
+    });
 
   };
 
@@ -113,6 +114,10 @@ class App extends Component<IProps, IState> {
         });
   };
 
+  handleCancelOrder = () => {
+    this.props.history.push("/user");
+  };
+
   render() {
 
     return (
@@ -122,7 +127,8 @@ class App extends Component<IProps, IState> {
                      isAuthenticated={this.state.isAuthenticated}
                      currentUser={this.state.currentUser}
                      handleLogout={this.handleLogout}
-                     handleConfirmOrder={this.handleConfirmOrder}/>}
+                     handleConfirmOrder={this.handleConfirmOrder}
+                     handleCancelOrder={this.handleCancelOrder}/>}
           <Switch>
 
             <Route path={"/user"}
